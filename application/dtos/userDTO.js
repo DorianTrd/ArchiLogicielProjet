@@ -1,15 +1,14 @@
 // dtos/userDTO.js
-
-//NON FONCTIONNEL CAR PAS COONNECTE AUX AUTRE CAR MARCHE PAS LORS DE TESTS
 class UserDTO {
     constructor({ nom, prenom, email, telephone, profil }) {
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
         this.telephone = telephone;
-        this.profil = profil;
+        this.profil = profil; // Nom du profil, par exemple "Administrateur" ou "Utilisateur Standard"
     }
 
+    // Méthode pour valider les données
     validate() {
         const errors = [];
 
@@ -23,16 +22,16 @@ class UserDTO {
             errors.push('Email est requis et doit être valide.');
         }
         if (!this.telephone || typeof this.telephone !== 'string') {
-            errors.push('Numéro de téléphone est requis et doit être une chaîne de caractères.');
+            errors.push('Téléphone est requis et doit être une chaîne de caractères.');
         }
 
-        return errors; 
+        return errors.length ? errors : null;
     }
 
     validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(email);
+        return re.test(String(email).toLowerCase());
     }
 }
 
-module.exports = UserDTO; 
+module.exports = UserDTO;

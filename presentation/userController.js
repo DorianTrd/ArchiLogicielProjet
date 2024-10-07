@@ -1,10 +1,11 @@
-const userService = require('../services/userService');
+// controllers/userController.js
+const userService = require('../application/userService');
 
 class UserController {
     async createUser(req, res) {
         try {
             const user = await userService.createUser(req.body);
-            res.status(201).json(user);
+            res.status(201).json(user); // Renvoie l'utilisateur créé avec le profil
         } catch (error) {
             res.status(400).json({ message: error.message });
         }
