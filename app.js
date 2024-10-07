@@ -1,17 +1,15 @@
 // app.js
 const express = require('express');
-const bodyParser = require('body-parser');
-const userRoutes = require('./routes/userRoutes');
 const app = express();
-const PORT = process.env.PORT || 3000;
+const userRoutes = require('./routes/userRoutes');
 
-// Middleware
-app.use(bodyParser.json());
+// Middleware pour le parsing du JSON
+app.use(express.json());
 
-// Routes
+// Utilisation des routes pour les utilisateurs avec le préfixe /api
 app.use('/api/users', userRoutes);
 
-// Démarrer le serveur
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+// Lancer le serveur sur le port 3000
+app.listen(3000, () => {
+    console.log('Serveur démarré sur le port 3000');
 });

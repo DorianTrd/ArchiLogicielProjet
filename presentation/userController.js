@@ -2,15 +2,6 @@
 const userService = require('../application/userService');
 
 class UserController {
-    async createUser(req, res) {
-        try {
-            const user = await userService.createUser(req.body);
-            res.status(201).json(user); // Renvoie l'utilisateur créé avec le profil
-        } catch (error) {
-            res.status(400).json({ message: error.message });
-        }
-    }
-
     async getAllUsers(req, res) {
         try {
             const users = await userService.getAllUsers();
@@ -27,6 +18,15 @@ class UserController {
             res.json(user);
         } catch (error) {
             res.status(500).json({ message: error.message });
+        }
+    }
+
+    async createUser(req, res) {
+        try {
+            const user = await userService.createUser(req.body);
+            res.status(201).json(user); // Retourner l'utilisateur créé
+        } catch (error) {
+            res.status(400).json({ message: error.message });
         }
     }
 
